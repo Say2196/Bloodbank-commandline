@@ -22,6 +22,8 @@ import java.util.List;
 
 public class DonorDAOImpl implements DonorDAO {
 
+
+	
 	@Override
 	public int create(Donors donor) throws SQLException
 	
@@ -107,7 +109,21 @@ public List<Donors> read() throws SQLException, ParseException
 	{
 		Donors donor=new Donors(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),sdf.parse(rs.getString(6)),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),sdf.parse(rs.getString(14)));
 		donorList.add(donor);
-		String str = String.format("\n Id=%s\n FirstName=%s\n LastName=%s\n Age=%s\n Gender=%s\n DateOfBirth=%s\n Height=%s\n Weight=%s\n Email ID=%s\n Conatact number=%s\n Address=%s\n Blood group=%s\n Blood Donated Within a year=%s\n Last blood donation date=%s\n",rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),sdf.parse(rs.getString(6)),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),sdf.parse(rs.getString(14)));
+		String str = String.format("\n"
+				+ " ID           = %s\n"
+				+ " FirstName    = %s\n"
+				+ " LastName     = %s\n"
+				+ " Age          = %s\n"
+				+ " Gender       = %s\n"
+				+ " DateOfBirth  = %s\n"
+				+ " Height       = %s\n"
+				+ " Weight       = %s\n"
+				+ " Email ID     = %s\n"
+				+ " Phone no.    = %s\n"
+				+ " Address      = %s\n"
+				+ " Blood group  = %s\n"
+				+ " Last donation= %s\n"
+				+ " Donation date= %s\n",rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 		System.out.println("\n");
 		System.out.println(str);
 	}
@@ -128,7 +144,20 @@ public Donors read(Integer id) throws SQLException, ParseException
 
 	if(rs.next()) {
 		donor=new Donors(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),sdf1.parse(rs.getString(6)),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),sdf1.parse(rs.getString(14)));
-		String str = String.format("\n Id=%s\n FirstName=%s\n LastName=%s\n Age=%s\n Gender=%s\n DateOfBirth=%s\n Height=%s\n Weight=%s\n Email ID=%s\n Conatact number=%s\n Address=%s\n Blood group=%s\n Blood Donated Within a year=%s\n Last blood donation date=%s\n",rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),sdf1.parse(rs.getString(6)),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),sdf1.parse(rs.getString(14)));
+		String str = String.format("\n"
+				+ " FirstName    = %s\n"
+				+ " LastName     = %s\n"
+				+ " Age          = %s\n"
+				+ " Gender       = %s\n"
+				+ " DateOfBirth  = %s\n"
+				+ " Height       = %s\n"
+				+ " Weight       = %s\n"
+				+ " Email ID     = %s\n"
+				+ " Phone no.    = %s\n"
+				+ " Address      = %s\n"
+				+ " Blood group  = %s\n"
+				+ " Last donation= %s\n"
+				+ " Donation date= %s\n",rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 		System.out.println("\n");
 		System.out.println(str);
 	}

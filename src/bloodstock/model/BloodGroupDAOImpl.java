@@ -32,7 +32,9 @@ public class BloodGroupDAOImpl implements BloodGroupDAO  {
 			if(rs.next())
 			{
 				bloodgroup=new BloodGroup( rs.getString(1),rs.getInt(2));
-				String str1 = String.format("\n Blood group=%s\n Available units=%s\n",rs.getString(1),rs.getInt(2));
+				String str1 = String.format("\n"
+						+ " Blood group      = %s\n"
+						+ " Available units  = %s\n",rs.getString(1),rs.getInt(2));
 				System.out.println("\n");
 				System.out.println(str1);
 			}
@@ -51,9 +53,11 @@ public class BloodGroupDAOImpl implements BloodGroupDAO  {
 			{
 				BloodGroup bloodgroup=new BloodGroup(rs.getString(1),rs.getInt(2));
 				bloodGroupList.add(bloodgroup);
-				String str = String.format("\n Blood group=%s\n Available units=%s\n",rs.getString(1),rs.getInt(2));
+				String str1 = String.format("\n"
+						+ " Blood group      = %s\n"
+						+ " Available units  = %s\n",rs.getString(1),rs.getInt(2));
 				System.out.println("\n");
-				System.out.println(str);
+				System.out.println(str1);
 			}
 			return bloodGroupList;
 		

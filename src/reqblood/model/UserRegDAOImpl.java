@@ -10,12 +10,14 @@ import java.util.List;
 
 public class UserRegDAOImpl implements UserRegDAO {
 	
+	String tablename="USERREG";
+	
 	private String autoGenerateId() throws SQLException
 	{
 		//finding the max number portion from the existing ids
 		//select max(substr(id,2,4)) from employee;
 		Connection con=MyConnection.getConnection();
-		ResultSet rs = con.createStatement().executeQuery("select max(substr(ID,2,4)) from USERREG");
+		ResultSet rs = con.createStatement().executeQuery("select max(substr(ID,2,4)) from "+tablename);
 		String id="";
 		if(rs.next())
 		{
@@ -36,7 +38,7 @@ public class UserRegDAOImpl implements UserRegDAO {
 	public int create(UserReg user) throws SQLException
 	{
 		Connection con = MyConnection.getConnection();
-		PreparedStatement st=con.prepareStatement("INSERT INTO USERREG VALUES(?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement st=con.prepareStatement("INSERT INTO "+tablename+" VALUES(?,?,?,?,?,?,?,?,?,?)");
 		st.setString(1, autoGenerateId());
 		st.setString(2, user.getFirstName());
 		st.setString(3, user.getLastName());
@@ -57,7 +59,7 @@ public class UserRegDAOImpl implements UserRegDAO {
 	public List<UserReg> read() throws SQLException
 	{
 		Connection con=MyConnection.getConnection();
-		PreparedStatement st = con.prepareStatement("SELECT * FROM USERREG");
+		PreparedStatement st = con.prepareStatement("SELECT * FROM "+tablename);
 		ResultSet rs = st.executeQuery();
 		//SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		List<UserReg> userList=new ArrayList<UserReg>();
@@ -65,7 +67,17 @@ public class UserRegDAOImpl implements UserRegDAO {
 		{
 			UserReg user=new UserReg(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
 			userList.add(user);
-			String str = String.format("\n Id=%s\n FirstName=%s\n LastName=%s\n Age=%s\n Gender=%s\n Email ID=%s\n Conatact number=%s\n Address=%s\n Blood group=%s\n Unit required=%s\n",rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			String str = String.format("\n"
+					+ "Id               = %s\n"
+					+ "FirstName        = %s\n"
+					+ "LastName         = %s\n"
+					+ "Age              = %s\n"
+					+ "Gender           = %s\n"
+					+ "Email ID         = %s\n"
+					+ "Conatact number  = %s\n"
+					+ "Address          = %s\n"
+					+ "Blood group      = %s\n"
+					+ "Unit required    = %s\n",rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
 			System.out.println("\n");
 			System.out.println(str);
 		}
@@ -76,7 +88,7 @@ public class UserRegDAOImpl implements UserRegDAO {
 	public UserReg read(String id) throws SQLException
 	{
 		Connection con=MyConnection.getConnection();
-		PreparedStatement st = con.prepareStatement("SELECT * FROM USERREG WHERE id=?");
+		PreparedStatement st = con.prepareStatement("SELECT * FROM "+tablename+" WHERE id=?");
 		st.setString(1, id);
 		ResultSet rs = st.executeQuery();
 		UserReg user=null;
@@ -85,7 +97,17 @@ public class UserRegDAOImpl implements UserRegDAO {
 		if(rs.next())
 		{
 			user=new UserReg(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
-			String str = String.format("\n Id=%s\n FirstName=%s\n LastName=%s\n Age=%s\n Gender=%s\n Email ID=%s\n Conatact number=%s\n Address=%s\n Blood group=%s\n Unit required=%s\n",rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			String str = String.format("\n"
+					
+					+ "FirstName        = %s\n"
+					+ "LastName         = %s\n"
+					+ "Age              = %s\n"
+					+ "Gender           = %s\n"
+					+ "Email ID         = %s\n"
+					+ "Conatact number  = %s\n"
+					+ "Address          = %s\n"
+					+ "Blood group      = %s\n"
+					+ "Unit required    = %s\n",rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
 			System.out.println("\n");
 			System.out.println(str);
 		}
@@ -95,7 +117,7 @@ public class UserRegDAOImpl implements UserRegDAO {
 	public int update(UserReg user) throws SQLException
 	{
 		Connection con = MyConnection.getConnection();
-		PreparedStatement st = con.prepareStatement("UPDATE USERREG SET FIRSTNAME=?,LASTNAME =?,AGE=?,GENDER=?,EMAIL=?,CONTACTNO=?,ADDRESS=?,BLOODGROUP=?,UNIT=?  WHERE id=?");
+		PreparedStatement st = con.prepareStatement("UPDATE "+tablename+" SET FIRSTNAME=?,LASTNAME =?,AGE=?,GENDER=?,EMAIL=?,CONTACTNO=?,ADDRESS=?,BLOODGROUP=?,UNIT=?  WHERE id=?");
 		
 		st.setString(1, user.getFirstName());
 		st.setString(2, user.getLastName());
