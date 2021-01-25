@@ -84,14 +84,14 @@ public int update(Donors donor) throws SQLException
 	}
 
 @Override
-public boolean delete(Integer id) throws SQLException
+public int delete(Integer id) throws SQLException
 {
 	Connection con = MyDonorConnection.getConnection();
-//	PreparedStatement st = con.prepareStatement("DELETE FROM DONORS WHERE ID=?");
-	CallableStatement st=con.prepareCall("{call  prcDeleteDonor(?)}");
+	PreparedStatement st = con.prepareStatement("DELETE FROM DONORS WHERE ID=?");
+//	CallableStatement st=con.prepareCall("{call  prcDeleteDonor(?)}");
 	
 	st.setInt(1, id);
-	boolean no=st.execute();
+	int no=st.executeUpdate();
 	con.close();
 	return no;
 }

@@ -13,9 +13,9 @@ public interface UserRegDAO {
 
 	int update(UserReg user) throws SQLException;
 
-	boolean delete(String id) throws SQLException;
+//	boolean delete(String id) throws SQLException;
 	
-	//int delete(String id) throws SQLException;
+	int delete(String id) throws SQLException;
 
 	
 

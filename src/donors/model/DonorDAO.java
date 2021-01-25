@@ -10,7 +10,7 @@ public interface DonorDAO {
 
 	int update(Donors donor) throws SQLException;
 
-	boolean delete(Integer id) throws SQLException;
+	int delete(Integer id) throws SQLException;
 
 	List<Donors> read() throws SQLException, ParseException;
 

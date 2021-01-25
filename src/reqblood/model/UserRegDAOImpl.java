@@ -135,16 +135,16 @@ public class UserRegDAOImpl implements UserRegDAO {
 	}
 	
 	@Override
-	public boolean delete(String id) throws SQLException
+	public int delete(String id) throws SQLException
 	{
 		Connection con = MyConnection.getConnection();
-		//PreparedStatement st = con.prepareStatement("DELETE FROM USERREG WHERE ID=?");
-		CallableStatement st=con.prepareCall("{call prcDeleteRequest(?)}");
+		PreparedStatement st = con.prepareStatement("DELETE FROM USERREG WHERE ID=?");
+//		CallableStatement st=con.prepareCall("{call prcDeleteRequest(?)}");
 		st.setString(1, id);
-		//int no=st.executeUpdate();
-		boolean status = st.execute();
+		int no=st.executeUpdate();
+		//boolean status = st.execute();
 		con.close();
-		return status;
+		return no;
 		
 		
 	}
